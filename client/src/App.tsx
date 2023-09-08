@@ -1,13 +1,13 @@
-import Navbar from "./components/Navbar"
+import Entries from "./components/Entries";
+import Navbar from "./components/Navbar";
 
 function App() {
- 
-
   return (
-    <main className="p-[10px] max-w-[500px] mx-auto my-0">
+    <main className="p-[10px] max-w-[700px] mx-auto my-0">
       <Navbar />
+      <Entries />
     </main>
-  )
+  );
 }
 
-export default App
+export default App;
