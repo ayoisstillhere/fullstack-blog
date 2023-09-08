@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <header className="flex justify-between mb-[50px] items-center mt-[20px]">
-      <a href="" className="font-bold text-[1.8rem]">
+      <Link to="/" className="font-bold text-[1.8rem]">
         TechTrials
-      </a>
+      </Link>
       <nav className="flex gap-[15px]">
         <Link to="/login" className="no-underline text-inherit">
           Login
