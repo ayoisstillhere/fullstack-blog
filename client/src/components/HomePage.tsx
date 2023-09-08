@@ -1,6 +1,6 @@
 import Post from "./Post";
 
-const Entries = () => {
+const HomePage = () => {
   return (
     <>
       <Post />
@@ -10,4 +10,4 @@ const Entries = () => {
   );
 };
 
-export default Entries;
+export default HomePage;
