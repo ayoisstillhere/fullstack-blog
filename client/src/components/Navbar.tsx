@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
   return (
     <header className="flex justify-between mb-[50px] items-center mt-[20px]">
@@ -5,12 +7,12 @@ const Navbar = () => {
         TechTrials
       </a>
       <nav className="flex gap-[15px]">
-        <a href="" className="no-underline text-inherit">
+        <Link to="/login" className="no-underline text-inherit">
           Login
-        </a>
-        <a href="" className="no-underline text-inherit">
+        </Link>
+        <Link to="/register" className="no-underline text-inherit">
           Register
-        </a>
+        </Link>
       </nav>
     </header>
   );
