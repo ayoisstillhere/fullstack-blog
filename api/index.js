@@ -10,7 +10,7 @@ const app = express();
 const salt = bycrypt.genSaltSync(10);
 const secret = "3adfsdvrfrverfdcsdffvgbsdsvdcwsedvedcrw3245sc";
 
-app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(express.json());
 
 mongoose.connect(dbURI);
