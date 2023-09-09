@@ -1,18 +1,23 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const User = require("./models/User");
+const dbURI = require("./constants");
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-dbURI =
-  "mongodb+srv://afagbami:qcssRq52gt22tuOS@cluster0.djv2j68.mongodb.net/?retryWrites=true&w=majority";
 mongoose.connect(dbURI);
 
-app.post("/register", (req, res) => {
+app.post("/register", async (req, res) => {
   const { username, password } = req.body;
-  res.json({ requestData: { username, password } });
+  try {
+    const userDoc = await User.create({ username, password });
+    res.json(userDoc);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 });
 
 app.listen(4000);
