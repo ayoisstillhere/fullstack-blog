@@ -4,9 +4,11 @@ const mongoose = require("mongoose");
 const User = require("./models/User");
 const dbURI = require("./constants");
 const bycrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const app = express();
 
 const salt = bycrypt.genSaltSync(10);
+const secret = "3adfsdvrfrverfdcsdffvgbsdsvdcwsedvedcrw3245sc";
 
 app.use(cors());
 app.use(express.json());
@@ -30,7 +32,15 @@ app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const userDoc = await User.findOne({ username });
   const passOk = bycrypt.compareSync(password, userDoc.password);
-  res.json({ passOk });
+  if (passOk) {
+    // logged in
+    jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
+      if (err) throw err;
+      res.cookie("token", token).json("ok");
+    });
+  } else {
+    res.status(400).json({ message: "Wrong credentials" });
+  }
 });
 
 app.listen(4000);
