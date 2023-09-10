@@ -82,4 +82,8 @@ app.post("/post", uploadMiddleware.single("image"), async (req, res) => {
   res.json(postDoc);
 });
 
+app.get("/posts", async (req, res) => {
+  res.json(await Post.find());
+});
+
 app.listen(4000);
