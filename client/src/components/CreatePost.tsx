@@ -36,9 +36,22 @@ const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
+  const [image, setImage] = useState<any>("");
+  function createNewPost(ev: { preventDefault: () => void }) {
+    ev.preventDefault();
+    const data = new FormData();
+    data.set("title", title);
+    data.set("summary", summary);
+    data.set("content", content);
+    data.set("image", image[0]);
+    fetch("http://localhost:4000/post", {
+      method: "POST",
+      body: data,
+    });
+  }
 
   return (
-    <form action="">
+    <form onSubmit={createNewPost}>
       <input
         type="title"
         placeholder="Title"
@@ -58,6 +71,7 @@ const CreatePost = () => {
         name=""
         id=""
         className="block mb-[5px] w-[100%] py-[5px] px-[7px] bg-[#fff] border-2 border-[#ddd] rounded-[5px]"
+        onChange={(e) => setImage(e.target.files)}
       />
       <ReactQuill
         value={content}
@@ -65,7 +79,7 @@ const CreatePost = () => {
         formats={formats}
         onChange={(newValue) => setContent(newValue)}
       />
-      <button className="w-[100%] block bg-[#555] text-white rounded-[5px] py-[7px] mt-[5px]" onClick={() => console.log(content)}>
+      <button className="w-[100%] block bg-[#555] text-white rounded-[5px] py-[7px] mt-[5px]">
         Create Post
       </button>
     </form>
