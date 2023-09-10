@@ -6,7 +6,7 @@ const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
-  const { setUserInfo } = useContext(UserContext);
+  const { setUserInfo } = useContext<any>(UserContext);
   async function login(ev: { preventDefault: () => void }) {
     ev.preventDefault();
     const response = await fetch("http://localhost:4000/login", {
