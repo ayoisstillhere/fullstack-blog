@@ -18,6 +18,7 @@ const Navbar = () => {
       credentials: "include",
       method: "POST",
     });
+    setUsername(null);
   }
 
   return (
