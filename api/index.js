@@ -6,12 +6,14 @@ const dbURI = require("./constants");
 const bycrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const app = express();
+const cookieParser = require("cookie-parser");
 
 const salt = bycrypt.genSaltSync(10);
 const secret = "3adfsdvrfrverfdcsdffvgbsdsvdcwsedvedcrw3245sc";
 
 app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(express.json());
+app.use(cookieParser());
 
 mongoose.connect(dbURI);
 
@@ -41,6 +43,10 @@ app.post("/login", async (req, res) => {
   } else {
     res.status(400).json({ message: "Wrong credentials" });
   }
+});
+
+app.get("/profile", (req, res) => {
+  res.json(req.cookies);
 });
 
 app.listen(4000);
