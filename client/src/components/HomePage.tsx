@@ -20,6 +20,7 @@ const HomePage = () => {
             content={null}
             image={null}
             createdAt={null}
+            author={null}
             {...(post as typeof Post)}
           />
         ))}
