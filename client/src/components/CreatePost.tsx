@@ -37,14 +37,14 @@ const CreatePost = () => {
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState<any>("");
-  function createNewPost(ev: { preventDefault: () => void }) {
+  async function createNewPost(ev: { preventDefault: () => void }) {
     ev.preventDefault();
     const data = new FormData();
     data.set("title", title);
     data.set("summary", summary);
     data.set("content", content);
     data.set("image", image[0]);
-    fetch("http://localhost:4000/post", {
+    const response = await fetch("http://localhost:4000/post", {
       method: "POST",
       body: data,
     });

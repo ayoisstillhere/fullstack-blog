@@ -7,6 +7,9 @@ const bycrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const app = express();
 const cookieParser = require("cookie-parser");
+const multer = require("multer");
+const uploadMiddleware = multer({ dest: "uploads/" });
+const fs = require("fs");
 
 const salt = bycrypt.genSaltSync(10);
 const secret = "3adfsdvrfrverfdcsdffvgbsdsvdcwsedvedcrw3245sc";
@@ -40,7 +43,7 @@ app.post("/login", async (req, res) => {
       if (err) throw err;
       res.cookie("token", token).json({
         id: userDoc._id,
-        username
+        username,
       });
     });
   } else {
@@ -58,6 +61,15 @@ app.get("/profile", (req, res) => {
 
 app.post("/logout", (req, res) => {
   res.cookie("token", "").json("ok");
+});
+
+app.post("/post", uploadMiddleware.single("image"), (req, res) => {
+  const { originalname, path } = req.file;
+  const parts = originalname.split(".");
+  const ext = parts[parts.length - 1];
+  const newPath = path + "." + ext;
+  fs.renameSync(path, newPath);
+  res.json({ ext });
 });
 
 app.listen(4000);
