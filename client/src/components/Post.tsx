@@ -5,7 +5,6 @@ const Post = ({
   _id,
   title,
   summary,
-  content,
   image,
   createdAt,
   author,
@@ -13,13 +12,12 @@ const Post = ({
   _id: any;
   title: any;
   summary: any;
-  content: any;
   image: any;
   createdAt: any;
   author: any;
 }) => {
   return (
-    <div className="grid grid-cols-[0.9fr,1.1fr] gap-[20px] mb-[30px]">
+    <div className="grid sm:grid-cols-[0.9fr,1.1fr] grid-cols-[1fr] gap-[20px] mb-[30px]">
       <div className="">
         <Link to={`/post/${_id}`}>
           <img

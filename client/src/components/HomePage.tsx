@@ -18,7 +18,6 @@ const HomePage = () => {
             _id={null}
             title={null}
             summary={null}
-            content={null}
             image={null}
             createdAt={null}
             author={null}
