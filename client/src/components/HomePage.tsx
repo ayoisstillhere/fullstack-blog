@@ -15,6 +15,7 @@ const HomePage = () => {
       {posts.length > 0 &&
         posts.map((post) => (
           <Post
+            _id={null}
             title={null}
             summary={null}
             content={null}
