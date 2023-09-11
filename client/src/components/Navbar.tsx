@@ -32,6 +32,7 @@ const Navbar = () => {
       <nav className="flex gap-[15px]">
         {username && (
           <>
+          <span>Hello, {username}</span>
             <Link to="/create">Create New Post</Link>
             <a href="/" className="no-underline text-inherit" onClick={logout}>
               Logout
